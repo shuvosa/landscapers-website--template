@@ -386,7 +386,7 @@
                     try {
                         let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
                         const payload = { contents: chatHistory };
-                        const apiKey = "AIzaSyCdc-9Ai4BDhdTwa4eL5cnrwfojRuO8UPI"; // API key is injected by the environment
+                        const apiKey = "YOUR_API_KEY"; // API key is injected by the environment
                         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
                         
                         const response = await fetch(apiUrl, {
