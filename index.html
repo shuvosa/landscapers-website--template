@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenScape Solutions - Professional Landscaping</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-section {
+            background-image: url('images/landscape.png');
+            background-size: cover;
+            background-position: center;
+        }
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 40;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-30">
+        <!-- Top Bar -->
+        <div class="bg-gray-800 text-white text-sm">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-2">
+                <div>
+                    <span class="hidden md:inline">Servicing Greater Melbourne & Metro Areas</span>
+                </div>
+                <div>
+                    <a href="tel:0403887310" class="hover:text-green-400">📞 0403 887 310</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <div class="bg-white">
+            <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-20">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0">
+                         <a href="#home" class="flex items-center space-x-2">
+                            <svg class="h-10 w-10 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" stroke-width="1.5" />
+                                <path d="M15 16s-2-2-4-2-4 2-4 2" stroke-width="1.5" stroke-linecap="round" />
+                                <path d="M9 9a.5.5 0 11-1 0 .5.5 0 011 0zm6 0a.5.5 0 11-1 0 .5.5 0 011 0z" fill="currentColor" />
+                                <path d="M8 13c0-2 1.5-3.5 4-3.5s4 1.5 4 3.5" stroke-width="1.5" stroke-linecap="round" />
+                            </svg>
+                            <span class="text-xl font-bold text-gray-800">GreenScape Solutions</span>
+                        </a>
+                    </div>
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="#home" class="text-gray-600 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                            <a href="#about" class="text-gray-600 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">About Us</a>
+                            <a href="#services" class="text-gray-600 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                            <a href="#ai-planner" class="text-gray-600 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">✨ AI Planner</a>
+                            <a href="#contact" class="text-gray-600 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                            <a href="#" class="bg-yellow-500 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-yellow-600 transition duration-300">Book a Meeting</a>
+                        </div>
+                    </div>
+                    <!-- Mobile Menu Button -->
+                    <div class="-mr-2 flex md:hidden">
+                        <button type="button" id="mobile-menu-button" class="bg-gray-100 inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-white">
+                            <span class="sr-only">Open main menu</span>
+                            <svg class="block h-6 w-6" id="menu-open-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                            <svg class="hidden h-6 w-6" id="menu-close-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+         <!-- Mobile Menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="text-gray-600 hover:bg-green-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#about" class="text-gray-600 hover:bg-green-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About Us</a>
+                <a href="#services" class="text-gray-600 hover:bg-green-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Services</a>
+                <a href="#ai-planner" class="text-gray-600 hover:bg-green-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">✨ AI Planner</a>
+                <a href="#contact" class="text-gray-600 hover:bg-green-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+                <a href="#" class="bg-yellow-500 text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-yellow-600 transition duration-300">Book a Meeting</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section relative h-[600px] text-white">
+            <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+                <div class="relative z-10 max-w-2xl">
+                    <p class="text-lg font-semibold text-green-400 uppercase">Quality that is guaranteed</p>
+                    <h1 class="text-4xl md:text-6xl font-bold leading-tight my-4">Your lawn and landscape cared for the way they should be</h1>
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <a href="#about" class="bg-green-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-700 transition duration-300">MORE ABOUT US</a>
+                        <a href="#contact" class="bg-gray-700 bg-opacity-80 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-800 transition duration-300">GET IN TOUCH</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                 <h2 class="text-3xl font-bold text-gray-800">About <span class="text-green-600">GreenScape Solutions</span></h2>
+                 <p class="mt-4 max-w-3xl mx-auto text-gray-600 leading-relaxed">
+                    We provide exceptional Melbourne Landscaping services to a wide range of commercial and residential properties and have more than 15 years experience. Our experienced landscapers spend much of each day in natural and synthetic turf, garden maintenance, irrigation, landscaping and hardscaping. We will whip your yard into shape in no time.
+                </p>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                     <h2 class="text-3xl font-bold text-gray-800">Exceptional <span class="text-green-600">Services We Offer</span></h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 text-center p-6">
+                        <img src="images/lawn.webp" alt="Lawn care" class="w-full h-48 object-cover rounded-md mb-4" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/4a5568?text=Lawn+Care';">
+                        <h3 class="text-xl font-bold text-gray-800">Lawn, Turf & Garden Care</h3>
+                        <p class="mt-2 text-gray-600 text-sm">Lawns that shine all year round. When it comes to your lawn care, we have some of Victoria's top experts in lawns, natural & synthetic turf.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 text-center p-6">
+                       <img src="images/planting.webp" alt="Planting and removal" class="w-full h-48 object-cover rounded-md mb-4" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/4a5568?text=Planting';">
+                        <h3 class="text-xl font-bold text-gray-800">Planting & Removal</h3>
+                        <p class="mt-2 text-gray-600 text-sm">While tree removal is usually the choice of last resort, it is sometimes most necessary to prevent further damage to your landscape.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 text-center p-6">
+                       <img src="images/irrigation.webp" alt="Irrigation and drainage" class="w-full h-48 object-cover rounded-md mb-4" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/4a5568?text=Irrigation';">
+                        <h3 class="text-xl font-bold text-gray-800">Irrigation & Drainage</h3>
+                        <p class="mt-2 text-gray-600 text-sm">Water is the key to life on Earth. So it's understandable that watering your lawn and garden is the key to preserving its lushness.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- AI Garden Planner Section -->
+        <section id="ai-planner" class="py-20 bg-green-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">✨ AI Garden Planner</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-gray-600">Describe your dream garden, and our AI will generate a personalized plan for you!</p>
+                </div>
+                <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+                    <form id="ai-planner-form">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="garden-style" class="block text-sm font-medium text-gray-700">Garden Style</label>
+                                <input type="text" id="garden-style" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm" placeholder="e.g., Modern, Cottage, Japanese">
+                            </div>
+                            <div>
+                                <label for="favorite-plants" class="block text-sm font-medium text-gray-700">Favorite Plants or Colors</label>
+                                <input type="text" id="favorite-plants" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm" placeholder="e.g., Roses, Lavender, Blue and White flowers">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label for="maintenance-level" class="block text-sm font-medium text-gray-700">Maintenance Level</label>
+                                <select id="maintenance-level" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm">
+                                    <option>Low - I prefer easy care plants.</option>
+                                    <option>Medium - I enjoy some gardening.</option>
+                                    <option>High - I love spending time in my garden.</option>
+                                </select>
+                            </div>
+                             <div class="md:col-span-2">
+                                <label for="other-features" class="block text-sm font-medium text-gray-700">Other Features</label>
+                                <textarea id="other-features" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm" placeholder="e.g., A small pond, a vegetable patch, a seating area..."></textarea>
+                            </div>
+                        </div>
+                        <div class="mt-8 text-center">
+                            <button type="submit" class="bg-green-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-green-700 transition duration-300 inline-flex items-center">
+                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" id="loading-spinner" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                <span id="button-text">✨ Generate My Garden Plan</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">Get In <span class="text-green-600">Touch</span></h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-gray-600">Have a project in mind? We'd love to hear about it. Fill out the form below to get started.</p>
+                </div>
+                <div class="max-w-4xl mx-auto bg-gray-50 p-8 rounded-lg shadow-md">
+                    <form id="contact-form">
+                        <div id="form-notification" class="hidden mb-4 p-4 rounded-md"></div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                <input type="text" id="name" name="name" placeholder="enter your name " required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                                <input type="email" id="email"  placeholder="Enter your Email " required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label for="service" class="block text-sm font-medium text-gray-700">Service of Interest</label>
+                                <select id="service" name="service" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm">
+                                    <option>Lawn, Turf & Garden Care</option>
+                                    <option>Planting & Removal</option>
+                                    <option>Irrigation & Drainage</option>
+                                    <option>Hardscaping</option>
+                                    <option>Full Landscape Design</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                             <div class="md:col-span-2">
+                                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                                <textarea id="message" name="message" rows="4" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm" placeholder="Tell us about your project..."></textarea>
+                            </div>
+                        </div>
+                        <div class="mt-8 text-right">
+                            <button type="submit" class="bg-green-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-green-700 transition duration-300">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left">
+                <div class="lg:col-span-1">
+                    <h4 class="text-lg font-bold">GreenScape Solutions</h4>
+                    <p class="mt-4 text-gray-400">Creating and maintaining beautiful landscapes since 2009.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold">Quick Links</h4>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white">Services</a></li>
+                        <li><a href="#ai-planner" class="text-gray-400 hover:text-white">AI Planner</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold">Contact Info</h4>
+                    <ul class="mt-4 space-y-2 text-gray-400">
+                        <li>Melbourne, VIC</li>
+                        <li>Phone: 0403 887 310</li>
+                        <li>Email: contact@greenscape.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold">Follow Us</h4>
+                    <div class="flex mt-4 space-x-4 justify-center md:justify-start">
+                        <a href="#" class="text-gray-400 hover:text-white"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.59 0 0 .59 0 1.325v21.35C0 23.41.59 24 1.325 24H12.82v-9.29H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.735 0 1.325-.59 1.325-1.325V1.325C24 .59 23.41 0 22.675 0z"/></svg></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.07 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"/></svg></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.223.085c.645 1.956 2.52 3.379 4.744 3.419A9.87 9.87 0 010 17.54a13.94 13.94 0 007.548 2.212c9.058 0 14.01-7.502 14.01-14.01 0-.213-.005-.426-.015-.637A10.03 10.03 0 0024 4.59z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
+                &copy; 2024 GreenScape Solutions. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Plan Modal -->
+    <div id="modal-backdrop" class="modal-backdrop"></div>
+    <div id="ai-plan-modal" class="modal bg-white rounded-lg shadow-2xl w-11/12 md:max-w-2xl">
+        <div class="p-6 border-b border-gray-200 flex justify-between items-center">
+            <h3 class="text-2xl font-bold text-gray-800">✨ Your Custom Garden Plan</h3>
+            <button id="close-modal-button" class="text-gray-500 hover:text-gray-800 text-3xl font-bold">&times;</button>
+        </div>
+        <div id="modal-content" class="p-6 max-h-[60vh] overflow-y-auto"></div>
+        <div class="p-4 bg-gray-50 border-t border-gray-200 text-right">
+             <button id="close-modal-button-2" class="bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-lg hover:bg-gray-300 transition duration-300">Close</button>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const openIcon = document.getElementById('menu-open-icon');
+            const closeIcon = document.getElementById('menu-close-icon');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                openIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+            });
+
+            // --- Smooth Scrolling & Mobile Menu Close on Nav Link Click ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    // Check if the link is for an on-page anchor
+                    if (this.getAttribute('href').startsWith('#') && this.getAttribute('href').length > 1) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(this.getAttribute('href'));
+                        if (targetElement) {
+                             targetElement.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                        // Close mobile menu if open
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                            openIcon.classList.remove('hidden');
+                            closeIcon.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+
+            // --- AI Garden Planner Logic ---
+            const plannerForm = document.getElementById('ai-planner-form');
+            if(plannerForm) {
+                const loadingSpinner = document.getElementById('loading-spinner');
+                const buttonText = document.getElementById('button-text');
+                const modal = document.getElementById('ai-plan-modal');
+                const modalBackdrop = document.getElementById('modal-backdrop');
+                const modalContent = document.getElementById('modal-content');
+                const closeModalButton = document.getElementById('close-modal-button');
+                const closeModalButton2 = document.getElementById('close-modal-button-2');
+
+                plannerForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    const style = document.getElementById('garden-style').value;
+                    const plants = document.getElementById('favorite-plants').value;
+                    const maintenance = document.getElementById('maintenance-level').value;
+                    const features = document.getElementById('other-features').value;
+
+                    loadingSpinner.classList.remove('hidden');
+                    buttonText.textContent = 'Generating...';
+                    plannerForm.querySelector('button[type="submit"]').disabled = true;
+
+                    const prompt = `
+                        Create a detailed garden plan for a residential property.
+                        The user has the following preferences:
+                        - Garden Style: ${style || 'Not specified'}
+                        - Favorite Plants or Colors: ${plants || 'Not specified'}
+                        - Desired Maintenance Level: ${maintenance}
+                        - Other desired features: ${features || 'None'}
+
+                        Please provide a plan that includes:
+                        1.  A brief overview of the design concept.
+                        2.  A list of suggested plants (including a mix of flowers, shrubs, and trees if appropriate) suitable for a general temperate climate.
+                        3.  A suggested layout or zoning (e.g., "Place taller plants in the back, create a dedicated seating area...").
+                        4.  Basic care and maintenance tips based on their selected maintenance level.
+
+                        Format the response in clean, readable HTML with h3 for titles, ul/li for lists, and p for paragraphs. Do not include <html>, <body>, or <head> tags.
+                    `;
+
+                    try {
+                        let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+                        const payload = { contents: chatHistory };
+                        const apiKey = "AIzaSyCdc-9Ai4BDhdTwa4eL5cnrwfojRuO8UPI"; // API key is injected by the environment
+                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                        
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (!response.ok) throw new Error(`API request failed with status ${response.status}`);
+
+                        const result = await response.json();
+                        
+                        if (result.candidates?.[0]?.content?.parts?.[0]?.text) {
+                            modalContent.innerHTML = result.candidates[0].content.parts[0].text;
+                        } else {
+                           modalContent.innerHTML = '<p class="text-red-500">Sorry, we couldn\'t generate a plan at this time. Please try again later.</p>';
+                        }
+                    } catch (error) {
+                        console.error('Error calling Gemini API:', error);
+                        modalContent.innerHTML = `<p class="text-red-500">An error occurred: ${error.message}. Please check the console for more details.</p>`;
+                    } finally {
+                        openModal();
+                        loadingSpinner.classList.add('hidden');
+                        buttonText.textContent = '✨ Generate My Garden Plan';
+                        plannerForm.querySelector('button[type="submit"]').disabled = false;
+                    }
+                });
+
+                function openModal() {
+                    modal.style.display = 'block';
+                    modalBackdrop.style.display = 'block';
+                }
+
+                function closeModal() {
+                    modal.style.display = 'none';
+                    modalBackdrop.style.display = 'none';
+                }
+
+                closeModalButton.addEventListener('click', closeModal);
+                closeModalButton2.addEventListener('click', closeModal);
+                modalBackdrop.addEventListener('click', closeModal);
+            }
+
+            // --- Contact Form Logic ---
+            const contactForm = document.getElementById('contact-form');
+            if(contactForm) {
+                const formNotification = document.getElementById('form-notification');
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    // In a real application, you would send this data to a server.
+                    // For this demo, we'll just log it and show a success message.
+                    const formData = new FormData(contactForm);
+                    console.log('Contact Form Submitted:');
+                    for (let [key, value] of formData.entries()) {
+                        console.log(`${key}: ${value}`);
+                    }
+
+                    formNotification.classList.remove('hidden', 'bg-red-100', 'text-red-700');
+                    formNotification.classList.add('bg-green-100', 'text-green-700');
+                    formNotification.textContent = 'Thank you for your message! We will get back to you shortly.';
+                    formNotification.style.display = 'block';
+
+                    contactForm.reset();
+
+                    setTimeout(() => {
+                        formNotification.style.display = 'none';
+                    }, 5000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
