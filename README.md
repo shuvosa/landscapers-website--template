@@ -1,6 +1,6 @@
 # landscapers-website--template
 
-
+[🌐 Visit Live Site](https://creative-chaja-c7ec8e.netlify.app)
 
 A modern, responsive website for GreenScape Solutions, a landscaping company based in Melbourne. The website showcases the company's services, provides information about their expertise, and features an innovative AI-powered garden planner that helps users design their dream gardens.
 
