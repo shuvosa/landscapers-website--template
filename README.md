@@ -10,7 +10,7 @@ A modern, responsive website for GreenScape Solutions, a landscaping company bas
 
 
 
-Features
+# Features
 
 
 
@@ -34,7 +34,7 @@ Contact Form: Allows users to send inquiries directly to the company.
 
 Booking System: Enables users to schedule meetings with the landscaping team.
 
-Technologies Used
+# Technologies Used
 
 
 
@@ -54,7 +54,7 @@ Bootstrap: For responsive design and UI components (inferred from class names li
 
 JavaScript: For interactivity and dynamic content, such as the AI Garden Planner and form handling.
 
-Installation
+#Installation
 
 To run this website locally:
 
@@ -80,7 +80,7 @@ const apiKey = "YOUR_API_KEY";
 
 Open index.html in your preferred web browser.
 
-Usage
+# Usage
 
 
 
@@ -96,7 +96,7 @@ AI Garden Planner: Fill out the form with your garden preferences and click "Gen
 
 Contact and Booking: Use the contact form to send messages or book a meeting directly through the website.
 
-Contributing
+# Contributing
 
 Contributions are welcome! Please follow these steps to contribute:
 
