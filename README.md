@@ -54,7 +54,7 @@ Bootstrap: For responsive design and UI components (inferred from class names li
 
 JavaScript: For interactivity and dynamic content, such as the AI Garden Planner and form handling.
 
-#Installation
+# Installation
 
 To run this website locally:
 
